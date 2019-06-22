@@ -1,0 +1,62 @@
+
+
+#profile: dev
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/knowledgePayment?useSSL=false&characterEncoding=utf-8&nullCatalogMeansCurrent=true
+    username: root
+    password: lixinlonga
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      stat-view-servlet:
+        allow: true
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+    static-path-pattern: /html/**
+  resources:
+    static-locations: classpath:/templates/
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+mybatis:
+  type-aliases-package: com.pojo
+  mapper-locations:classpath: com/mapper/*.xml
+
+#分页插件的配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  params: count=countSql
+  support-methods-arguments: true
+
+
+
+
+logging:
+  pattern:
+  level:
+    root=info:
+  com.controller=DEBUG:
+  file: /Users/lixinlong/Desktop/logs/knowledgePayment.log
+
+
+
